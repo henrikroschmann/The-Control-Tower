@@ -1,0 +1,55 @@
+﻿<Window x:Class="The_Control_Tower.Manual"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:The_Control_Tower"
+        mc:Ignorable="d"
+        Title="Manual" Height="600" Width="1000"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="#dfe6e9">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid Background="#34495e"
+              Grid.ColumnSpan="5" MouseLeftButtonDown="OnCTLetButtonDownEvent">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0"
+                   Source="{StaticResource Aircraft}" />
+            <TextBlock 
+                Foreground="White"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                x:Name="TbTitle"
+            ></TextBlock>
+            <Button Grid.Row="0" Grid.Column="3" Margin="3" Click="Close_Click">Close</Button>
+        </Grid>
+        <Image x:Name="ImgStep"  Grid.Row="1" Grid.Column="2"/>
+
+
+        <StackPanel  Grid.Row="2" Grid.Column="2" Orientation="Horizontal">
+            <Button IsEnabled="false"  Click="Previous_Click" Margin="10" x:Name="BtPreviousButton">Previous Step</Button>
+            <Button  Click="Next_Click" Margin="10"  x:Name="BtNextButton">Next Step</Button>
+            <Button  Click="Start_Click" Margin="10"  x:Name="BtStartButton">Start Game</Button>
+        </StackPanel>
+    </Grid>
+</Window>

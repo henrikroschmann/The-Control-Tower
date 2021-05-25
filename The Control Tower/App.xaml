@@ -1,0 +1,10 @@
+﻿<Application x:Class="The_Control_Tower.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <BitmapImage x:Key="CtIcon" UriSource="Media/airplane-57-xxl.png"></BitmapImage>
+        <BitmapImage x:Key="Airfield" UriSource="Media/Airfield.png"></BitmapImage>
+        <BitmapImage x:Key="Aircraft" UriSource="Media/airplane_u2708_icon_24x24.png"></BitmapImage>
+    </Application.Resources>
+</Application>

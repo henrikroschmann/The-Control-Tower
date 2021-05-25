@@ -1,0 +1,189 @@
+﻿<Window x:Class="The_Control_Tower.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="900"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="#dfe6e9">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="280" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="#34495e"
+              Grid.ColumnSpan="5" MouseLeftButtonDown="OnCTLetButtonDownEvent">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0"
+                Source="{StaticResource CtIcon}" />
+            <TextBlock Text="Control Tower"
+                       Foreground="White"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+            ></TextBlock>
+        </Grid>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="20" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Background="Transparent"
+                               Foreground="#2d3436"
+                               Grid.Column="1">Flight Code</TextBlock>
+                    <TextBlock Background="Transparent"
+                               Foreground="#2d3436"
+                               Grid.Column="2">Status</TextBlock>
+                    <TextBlock Background="Transparent"
+                               Foreground="#2d3436"
+                               Grid.Column="3">Time</TextBlock>
+                    <TextBlock Background="Transparent"
+                               Foreground="#2d3436"
+                               Grid.Column="4">Dock</TextBlock>
+                </Grid>
+                <Border Margin="5"
+                        BorderThickness="1"
+                        BorderBrush="white"
+                        Background="White"
+                        Height="300">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <ListView ItemsSource="{Binding Items}"
+                              BorderThickness="0"
+                                  Grid.Column="1"
+                              x:Name="ListView" MouseDoubleClick="OnDoubleClickClickListBoxItem">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120" />
+                                            <ColumnDefinition Width="135" />
+                                            <ColumnDefinition Width="130" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Content="{Binding FlightCode}" Grid.Column="0"></Label>
+                                        <Label Content="{Binding Statuses}" Grid.Column="1"></Label>
+                                        <Label Content="{Binding Time}" Grid.Column="2"></Label>
+                                        <Label Content="{Binding Dock}" Grid.Column="3"></Label>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </Border>
+            </StackPanel>
+            <Grid Margin="0">
+                <ProgressBar Minimum="0" Maximum="10" Value="0"  Name="PbStatus" Foreground="Red"/>
+                <TextBlock Text="Incoming aircraft Queue max 10 allowed" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </StackPanel>
+        <Grid Grid.Row="3"
+              Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center"
+                           Width="80"
+                >Next Flight:</TextBlock>
+                <TextBox Width="200"
+                         Height="30"
+                         FontSize="18"
+                         Padding="0"
+                         Text="flight code" x:Name="TbFlightCode" />
+            </StackPanel>
+            <Button Grid.Column="1" x:Name="SendAircraftToRunWay">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect Color="Black" Direction="320" Softness="5" ShadowDepth="10" Opacity="0.2" />
+                </Button.BitmapEffect>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="3">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Canvas Grid.Row="0">
+                <TextBlock Text="AIRPLANE INCOMING" Foreground="Red" FontWeight="Bold" x:Name="Incoming" Opacity="0"></TextBlock>
+                <Image Source="{StaticResource Airfield}" Height="350" Width="279" Canvas.Top="-7" />
+                <Rectangle Width="28" Height="262" Canvas.Left="22" Canvas.Top="37" x:Name="ArrivalStrip" Fill="Red" Opacity="0.3"></Rectangle>
+                <Image Source="{StaticResource Aircraft}" Canvas.Left="22" Canvas.Top="275" x:Name="ArrivalPlane" Opacity="0" RenderTransformOrigin="0.556,0.486">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="-89.538" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Rectangle Width="28" Height="262" Canvas.Left="69" Canvas.Top="37" x:Name="DepartStrip" Fill="green" Opacity="0.3"></Rectangle>
+                <Image Source="{StaticResource Aircraft}" Canvas.Left="71" Canvas.Top="37" x:Name="DepartPlane" Opacity="0" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="90.159" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+
+                <Image Source="{StaticResource Aircraft}" Canvas.Left="175" Canvas.Top="53" x:Name="Dock1" Opacity="0"></Image>
+                <TextBlock Text="Dock 1" Canvas.Left="124" Canvas.Top="53" Height="16" Width="41" FontWeight="Bold" Foreground="#FF474141"></TextBlock>
+                <Image Source="{StaticResource Aircraft}" Canvas.Left="165" Canvas.Top="97" x:Name="Dock2" Opacity="0"></Image>
+                <TextBlock Text="Dock 2" Canvas.Left="124" Canvas.Top="97" Height="16" Width="41" FontWeight="Bold" Foreground="#FF474141"></TextBlock>
+                <Image Source="{StaticResource Aircraft}" Canvas.Left="164" Canvas.Top="157" x:Name="Dock3" Opacity="0"></Image>
+                <TextBlock Text="Dock 3" Canvas.Left="124" Canvas.Top="157" Height="16" Width="41" RenderTransformOrigin="0.187,0.417" FontWeight="Bold" Foreground="#FF474141"></TextBlock>
+                <Image Source="{StaticResource Aircraft}" Canvas.Left="164" Canvas.Top="218" x:Name="Dock4" Opacity="0"></Image>
+                <TextBlock Text="Dock 4" Canvas.Left="124" Canvas.Top="218" Height="16" Width="41" RenderTransformOrigin="0.561,3.417" FontWeight="Bold" Foreground="#FF474141"></TextBlock>
+                <Image Source="{StaticResource Aircraft}" Canvas.Left="175" Canvas.Top="263" x:Name="Dock5" Opacity="0"></Image>
+                <TextBlock Text="Dock 5" Canvas.Left="124" Canvas.Top="263" Height="16" Width="41" RenderTransformOrigin="0.561,3.417" FontWeight="Bold" Foreground="#FF474141" />
+            </Canvas>
+            <GroupBox  Grid.Row="2" Grid.Column="0" Header="In Use">
+                <TextBox IsReadOnly="True" x:Name="TbDocksInUse"></TextBox>
+            </GroupBox>
+            <GroupBox  Grid.Row="2" Grid.Column="1" Header="Available">
+                <TextBox  IsReadOnly="True" x:Name="TbDocksAvailable"></TextBox>
+            </GroupBox>
+        </Grid>
+        <Button Grid.Row="3" Grid.Column="3" Margin="5"
+                   Width="100" Click="ExitApplication_Click"
+        >Close application</Button>
+    </Grid>
+</Window>

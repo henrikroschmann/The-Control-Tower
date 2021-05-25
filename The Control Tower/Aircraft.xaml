@@ -1,0 +1,52 @@
+﻿<Window x:Class="The_Control_Tower.Aircraft"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Aircraft" Height="450" Width="465.5"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="#dfe6e9">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid Background="#34495e"
+              Grid.ColumnSpan="5" MouseLeftButtonDown="OnCTLetButtonDownEvent">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0"
+                   Source="{StaticResource Aircraft}" />
+            <TextBlock Text="Aircraft SAS 123"
+                       Foreground="White"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       x:Name="TbTitle"
+            ></TextBlock>
+            <Button Grid.Row="0" Grid.Column="3" Margin="3" Click="CloseAircraft_Click">Close</Button>
+        </Grid>
+        <Image Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" x:Name="ImgAircraft"></Image>
+        <Button Grid.Row="2" Grid.Column="2" Margin="5" x:Name="BtRejectLanding" FontSize="18" Click="OnRejectLanding">Reject landing fly away</Button>
+        <Button Grid.Row="3" Grid.Column="1" Margin="5" FontSize="18" x:Name="BtStart" Click="OnStartClick">Start</Button>
+        <ComboBox Grid.Row="3" Grid.Column="2" Margin="5" x:Name="CbAircraft" FontSize="18"></ComboBox>
+        <Button Grid.Row="3" Grid.Column="3" Margin="5" FontSize="18" x:Name="BtLand" Click="OnLandClick">Land</Button>
+    </Grid>
+</Window>

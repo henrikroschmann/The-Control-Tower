@@ -1,0 +1,18 @@
+You are the control Tower. ..
+
+Canvas with image of airfiled.
+Random Aircrafts max 5 in hangar (?)  waiting to be loaded. 
+If loaded send event ready for take off...
+
+// Aircraft waiting on boarding.. 
+
+Aircrafts incoming 
+If incoming add to board and request landing... 
+Spot needed for aricraft to land.. 
+
+// Aircraft fuel level that will drop? 
+
+
+Hej Johan, Koden och ideén är helt ok.
+Men det verkar svårt att göra ett GUI som är självinstruerande, jag får inte iväg något flyg, och det verkar landa saker som aldrig har startats, 
+du måste tala om HUR man använder ditt program. /Stig-Bertil
